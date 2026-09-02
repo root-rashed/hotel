@@ -85,3 +85,4 @@ src/main/resources/
 ```bash
 mvn test
 ```
+# hotel
