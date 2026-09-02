@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('My dashboard')}"></head>
+<body>
+<div class="app-shell">
+    <aside th:replace="~{fragments/sidebar :: sidebar('dashboard')}"></aside>
+    <div class="app-content">
+        <header th:replace="~{fragments/header :: topbar('My dashboard')}"></header>
+        <main class="main-content">
+            <div class="page">
+
+                <div class="page-head">
+                    <div>
+                        <h1 class="page-title" th:text="|Welcome, ${profile.firstName}|">Welcome, Jane</h1>
+                        <p class="page-subtitle">Your stays at a glance.</p>
+                    </div>
+                    <div class="page-actions">
+                        <a th:href="@{/customer/rooms}" class="btn btn-primary">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                            Browse rooms
+                        </a>
+                    </div>
+                </div>
+
+                <section class="card" th:if="${currentBooking}">
+                    <header class="card__header">
+                        <h2 class="card__title">Current stay</h2>
+                        <th:block th:replace="~{fragments/components :: statusBadge(${currentBooking.bookingStatus})}"></th:block>
+                    </header>
+                    <div class="current-stay">
+                        <p>
+                            Room <strong th:text="${currentBooking.roomNumber}">101</strong> —
+                            <span th:text="${currentBooking.checkInDate}">2026-01-01</span> to
+                            <span th:text="${currentBooking.checkOutDate}">2026-01-05</span>
+                        </p>
+                    </div>
+                </section>
+
+                <section class="card">
+                    <header class="card__header">
+                        <h2 class="card__title">Upcoming bookings</h2>
+                    </header>
+                    <div class="table-wrap">
+                        <table class="table" aria-label="Upcoming bookings">
+                            <thead>
+                                <tr>
+                                    <th>Reference</th>
+                                    <th>Room</th>
+                                    <th>Check-in</th>
+                                    <th>Check-out</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="b : ${upcomingBookings}">
+                                    <td class="table__title" th:text="${b.bookingReference}">BK123</td>
+                                    <td th:text="${b.roomNumber}">101</td>
+                                    <td th:text="${b.checkInDate}">2026-01-01</td>
+                                    <td th:text="${b.checkOutDate}">2026-01-05</td>
+                                    <td>
+                                        <th:block th:replace="~{fragments/components :: statusBadge(${b.bookingStatus})}"></th:block>
+                                    </td>
+                                </tr>
+                                <tr th:if="${#lists.isEmpty(upcomingBookings)}"
+                                    th:replace="~{fragments/components :: emptyRow('No upcoming bookings.', 5)}"></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section class="card">
+                    <header class="card__header">
+                        <h2 class="card__title">Previous stays</h2>
+                    </header>
+                    <div class="table-wrap">
+                        <table class="table" aria-label="Previous stays">
+                            <thead>
+                                <tr>
+                                    <th>Reference</th>
+                                    <th>Room</th>
+                                    <th>Check-in</th>
+                                    <th>Check-out</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="b : ${previousBookings}">
+                                    <td class="table__title" th:text="${b.bookingReference}">BK123</td>
+                                    <td th:text="${b.roomNumber}">101</td>
+                                    <td th:text="${b.checkInDate}">2026-01-01</td>
+                                    <td th:text="${b.checkOutDate}">2026-01-05</td>
+                                </tr>
+                                <tr th:if="${#lists.isEmpty(previousBookings)}"
+                                    th:replace="~{fragments/components :: emptyRow('No previous stays yet.', 4)}"></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+</div>
+<div th:replace="~{fragments/footer :: scripts}"></div>
+</body>
+</html>

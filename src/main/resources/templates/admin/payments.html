@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('All payments')}"></head>
+<body>
+<div class="app-shell">
+    <aside th:replace="~{fragments/sidebar :: sidebar('payments')}"></aside>
+    <div class="app-content">
+        <header th:replace="~{fragments/header :: topbar('All payments')}"></header>
+        <main class="main-content">
+            <div class="page">
+
+                <div class="page-head">
+                    <div>
+                        <h1 class="page-title">All payments</h1>
+                        <p class="page-subtitle">Every transaction recorded across the property.</p>
+                    </div>
+                </div>
+
+                <div th:replace="~{fragments/components :: alert('error', ${errorMessage})}"></div>
+
+                <section class="card">
+                    <div class="table-wrap">
+                        <table class="table" aria-label="Payments">
+                            <thead>
+                                <tr>
+                                    <th>Transaction ref</th>
+                                    <th>Booking</th>
+                                    <th class="table__cell-num">Amount</th>
+                                    <th>Method</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="p : ${payments}">
+                                    <td class="table__title" th:text="${p.transactionReference}">TXN-001</td>
+                                    <td th:text="${p.bookingReference}">BK123</td>
+                                    <td class="table__cell-num" th:text="'$' + ${p.amount}">$400</td>
+                                    <td th:text="${p.paymentMethod}">CARD</td>
+                                    <td>
+                                        <th:block th:replace="~{fragments/components :: statusBadge(${p.paymentStatus})}"></th:block>
+                                    </td>
+                                    <td th:text="${p.paymentDate}">2026-01-01</td>
+                                </tr>
+                                <tr th:if="${#lists.isEmpty(payments)}"
+                                    th:replace="~{fragments/components :: emptyRow('No payments found.', 6)}"></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+</div>
+<div th:replace="~{fragments/footer :: scripts}"></div>
+</body>
+</html>

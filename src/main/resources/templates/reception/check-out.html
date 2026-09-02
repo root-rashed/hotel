@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('Check-out')}"></head>
+<body>
+<div class="app-shell">
+    <aside th:replace="~{fragments/sidebar :: sidebar('check-out')}"></aside>
+    <div class="app-content">
+        <header th:replace="~{fragments/header :: topbar('Check-out')}"></header>
+        <main class="main-content">
+            <div class="page">
+
+                <div class="page-head">
+                    <div>
+                        <h1 class="page-title">Check-out</h1>
+                        <p class="page-subtitle">Guests currently checked in and due to leave.</p>
+                    </div>
+                </div>
+
+                <div th:replace="~{fragments/components :: alert('error', ${errorMessage})}"></div>
+
+                <section class="card">
+                    <div class="table-wrap">
+                        <table class="table" aria-label="Guests ready for check-out">
+                            <thead>
+                                <tr>
+                                    <th>Reference</th>
+                                    <th>Guest</th>
+                                    <th>Room</th>
+                                    <th>Check-out date</th>
+                                    <th class="table__cell-num">Total</th>
+                                    <th class="table__cell-num">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="b : ${bookings}">
+                                    <td class="table__title" th:text="${b.bookingReference}">BK123</td>
+                                    <td th:text="${b.customerName}">Jane Doe</td>
+                                    <td th:text="${b.roomNumber}">101</td>
+                                    <td th:text="${b.checkOutDate}">2026-01-05</td>
+                                    <td class="table__cell-num" th:text="'$' + ${b.totalAmount}">$400</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <form th:action="@{/reception/check-out/{id}(id=${b.id})}" method="post" class="inline-form">
+                                                <button type="submit" class="btn btn-primary btn-sm">Check out</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr th:if="${#lists.isEmpty(bookings)}"
+                                    th:replace="~{fragments/components :: emptyRow('No guests currently checked in.', 6)}"></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+</div>
+<div th:replace="~{fragments/footer :: scripts}"></div>
+</body>
+</html>

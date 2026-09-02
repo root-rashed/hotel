@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('Rooms')}"></head>
+<body>
+<div class="app-shell">
+    <aside th:replace="~{fragments/sidebar :: sidebar('rooms')}"></aside>
+    <div class="app-content">
+        <header th:replace="~{fragments/header :: topbar('Rooms')}"></header>
+        <main class="main-content">
+            <div class="page">
+
+                <div class="page-head">
+                    <div>
+                        <h1 class="page-title">Rooms</h1>
+                        <p class="page-subtitle">Every room across the property, with current status.</p>
+                    </div>
+                    <div class="page-actions">
+                        <a th:href="@{/admin/rooms/new}" class="btn btn-primary">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                            New room
+                        </a>
+                    </div>
+                </div>
+
+                <div th:replace="~{fragments/components :: alert('error', ${errorMessage})}"></div>
+
+                <section class="card">
+                    <div class="table-wrap">
+                        <table class="table" aria-label="Rooms">
+                            <thead>
+                                <tr>
+                                    <th>Room</th>
+                                    <th>Floor</th>
+                                    <th>Type</th>
+                                    <th class="table__cell-num">Price / night</th>
+                                    <th>Status</th>
+                                    <th class="table__cell-num">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="r : ${rooms}">
+                                    <td class="table__title" th:text="'Room ' + ${r.roomNumber}">Room 101</td>
+                                    <td th:text="${r.floor}">1</td>
+                                    <td th:text="${r.roomTypeName}">Double</td>
+                                    <td class="table__cell-num" th:text="'$' + ${r.pricePerNight}">$120</td>
+                                    <td>
+                                        <th:block th:replace="~{fragments/components :: statusBadge(${r.status})}"></th:block>
+                                    </td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <a th:href="@{/admin/rooms/{id}/edit(id=${r.id})}" class="btn btn-ghost btn-sm">Edit</a>
+                                            <form th:action="@{/admin/rooms/{id}/delete(id=${r.id})}" method="post"
+                                                  class="inline-form" data-confirm="Are you sure you want to delete this room? This cannot be undone.">
+                                                <button type="submit" class="btn btn-danger-ghost btn-sm">Delete</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr th:if="${#lists.isEmpty(rooms)}"
+                                    th:replace="~{fragments/components :: emptyRow('No rooms found.', 6)}"></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+</div>
+<div th:replace="~{fragments/footer :: scripts}"></div>
+</body>
+</html>

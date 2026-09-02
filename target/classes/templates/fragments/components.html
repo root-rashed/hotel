@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<!--
+  Reusable UI fragments shared across every page.
+
+  statusBadge(status) — renders a subtle, color-coded badge for any enum status
+  value used in the app (bookings, payments, rooms). Unknown values fall back
+  to the neutral variant.
+-->
+<th:block th:fragment="statusBadge(status)" th:switch="${status}">
+    <span th:case="'PENDING'" class="badge badge--warning" th:text="${status}">Pending</span>
+    <span th:case="'CONFIRMED'" class="badge badge--info" th:text="${status}">Confirmed</span>
+    <span th:case="'CHECKED_IN'" class="badge badge--info" th:text="${status}">Checked in</span>
+    <span th:case="'CHECKED_OUT'" class="badge badge--success" th:text="${status}">Checked out</span>
+    <span th:case="'CANCELLED'" class="badge badge--danger" th:text="${status}">Cancelled</span>
+    <span th:case="'PAID'" class="badge badge--success" th:text="${status}">Paid</span>
+    <span th:case="'FAILED'" class="badge badge--danger" th:text="${status}">Failed</span>
+    <span th:case="'REFUNDED'" class="badge badge--neutral" th:text="${status}">Refunded</span>
+    <span th:case="'AVAILABLE'" class="badge badge--success" th:text="${status}">Available</span>
+    <span th:case="'OCCUPIED'" class="badge badge--info" th:text="${status}">Occupied</span>
+    <span th:case="'RESERVED'" class="badge badge--info" th:text="${status}">Reserved</span>
+    <span th:case="'MAINTENANCE'" class="badge badge--warning" th:text="${status}">Maintenance</span>
+    <span th:case="*" class="badge badge--neutral" th:text="${status}">Unknown</span>
+</th:block>
+
+<!--
+  alert(kind, message) — dismissible inline alert. kind is one of:
+  info | success | warning | error. Renders nothing when message is empty.
+-->
+<div th:fragment="alert(kind, message)" th:if="${message}" th:classappend="' alert--' + ${kind}"
+     class="alert" role="alert">
+    <span class="alert__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/>
+        </svg>
+    </span>
+    <span class="alert__text" th:text="${message}">Message</span>
+    <button class="alert__close" type="button" aria-label="Dismiss notification" data-alert-close>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+</div>
+
+<!--
+  emptyRow(message, colspan) — empty-state row for tables.
+-->
+<tr th:fragment="emptyRow(message, colspan)">
+    <td class="table-empty" th:colspan="${colspan}">
+        <div class="empty">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 8v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8"/>
+                <path d="M3 4h18v4H3zM10 12h4"/>
+            </svg>
+            <p class="empty__text" th:text="${message}">No records found.</p>
+        </div>
+    </td>
+</tr>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('New booking')}"></head>
+<body>
+<div class="app-shell">
+    <aside th:replace="~{fragments/sidebar :: sidebar('bookings')}"></aside>
+    <div class="app-content">
+        <header th:replace="~{fragments/header :: topbar('New booking')}"></header>
+        <main class="main-content">
+            <div class="page">
+
+                <div class="page-head">
+                    <div>
+                        <h1 class="page-title">New booking</h1>
+                        <p class="page-subtitle">Assign a room and dates for a guest.</p>
+                    </div>
+                </div>
+
+                <div th:replace="~{fragments/components :: alert('error', ${errorMessage})}"></div>
+
+                <section class="card">
+                    <form th:action="@{/reception/bookings}" th:object="${bookingRequestDto}" method="post"
+                          class="form" id="bookingForm">
+                        <div class="form-grid">
+                            <div class="field">
+                                <label class="field__label" for="customerId">Customer</label>
+                                <select class="input" id="customerId" th:field="*{customerId}" required>
+                                    <option value="">-- Select customer --</option>
+                                    <option th:each="c : ${customers}" th:value="${c.id}"
+                                            th:text="|${c.firstName} ${c.lastName} (${c.email})|"></option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label class="field__label" for="roomId">Room</label>
+                                <select class="input" id="roomId" th:field="*{roomId}" required>
+                                    <option value="">-- Select room --</option>
+                                    <option th:each="r : ${rooms}" th:value="${r.id}"
+                                            th:data-price="${r.pricePerNight}"
+                                            th:text="|${r.roomNumber} - ${r.roomTypeName} ($${r.pricePerNight}/night)|"></option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label class="field__label" for="checkInDate">Check-in date</label>
+                                <input class="input" type="date" id="checkInDate" th:field="*{checkInDate}" required>
+                            </div>
+                            <div class="field">
+                                <label class="field__label" for="checkOutDate">Check-out date</label>
+                                <input class="input" type="date" id="checkOutDate" th:field="*{checkOutDate}" required>
+                            </div>
+                            <div class="field">
+                                <label class="field__label" for="numberOfGuests">Number of guests</label>
+                                <input class="input" type="number" id="numberOfGuests" th:field="*{numberOfGuests}" min="1" required>
+                            </div>
+                        </div>
+
+                        <p class="estimate" id="priceEstimate"></p>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Create booking</button>
+                            <a th:href="@{/reception/bookings}" class="btn btn-secondary">Cancel</a>
+                        </div>
+                    </form>
+                </section>
+
+            </div>
+        </main>
+    </div>
+</div>
+<div th:replace="~{fragments/footer :: scripts}"></div>
+<script th:src="@{/js/booking.js}"></script>
+</body>
+</html>

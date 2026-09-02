@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body class="auth-body">
+
+<style>
+    :root{
+        --navy-900:#0b1226;
+        --navy-800:#121a34;
+        --navy-700:#1b2748;
+        --blue-500:#3b63f0;
+        --blue-600:#3155e0;
+        --blue-100:#eef1ff;
+        --ink-900:#12162b;
+        --ink-500:#6b7280;
+        --line:#e6e8f0;
+    }
+
+    .auth-body{
+        margin:0;
+        min-height:100vh;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        background:#eef0f5;
+        font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+        padding:32px 16px;
+        box-sizing:border-box;
+    }
+
+    .auth-wrap{
+        width:100%;
+        max-width:1120px;
+    }
+
+    .auth-card{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        background:#fff;
+        border-radius:24px;
+        overflow:hidden;
+        box-shadow:0 30px 60px -20px rgba(15,23,42,.25);
+        min-height:660px;
+    }
+
+    /* ---------- Left showcase panel ---------- */
+    .auth-showcase{
+        position:relative;
+        padding:44px 48px;
+        color:#fff;
+        display:flex;
+        flex-direction:column;
+        justify-content:space-between;
+        background:
+            radial-gradient(600px 400px at 85% 100%, rgba(59,99,240,.35), transparent 60%),
+            linear-gradient(160deg,var(--navy-900) 0%, var(--navy-800) 55%, var(--navy-700) 100%);
+        overflow:hidden;
+    }
+
+    .auth-showcase::before{
+        /* soft abstract "lobby" silhouette, no external image required */
+        content:"";
+        position:absolute;
+        inset:0;
+        background:
+            radial-gradient(220px 220px at 78% 78%, rgba(255,255,255,.06), transparent 70%),
+            radial-gradient(160px 160px at 60% 92%, rgba(255,255,255,.05), transparent 70%);
+        pointer-events:none;
+    }
+
+    .showcase-top, .showcase-mid, .showcase-bottom{ position:relative; z-index:1; }
+
+    .brand{
+        display:flex;
+        align-items:center;
+        gap:10px;
+        font-weight:600;
+        font-size:15px;
+        color:#fff;
+        text-decoration:none;
+    }
+    .brand__icon{
+        width:34px;height:34px;
+        border-radius:10px;
+        display:flex;align-items:center;justify-content:center;
+        background:linear-gradient(135deg,var(--blue-500),#5a7dff);
+        flex:none;
+    }
+    .brand__icon svg{ width:18px;height:18px; }
+
+    .showcase-mid{ margin:56px 0 0; }
+    .showcase-title{
+        font-size:34px;
+        line-height:1.2;
+        font-weight:700;
+        margin:0 0 16px;
+        letter-spacing:-0.01em;
+    }
+    .showcase-title em{
+        font-style:normal;
+        color:#7fa1ff;
+    }
+    .showcase-subtitle{
+        margin:0;
+        font-size:15px;
+        line-height:1.6;
+        color:rgba(255,255,255,.65);
+        max-width:34ch;
+    }
+
+    .feature-list{
+        list-style:none;
+        margin:40px 0 0;
+        padding:0;
+        display:flex;
+        flex-direction:column;
+        gap:16px;
+    }
+    .feature-item{
+        display:flex;
+        align-items:center;
+        gap:14px;
+    }
+    .feature-icon{
+        width:40px;height:40px;
+        flex:none;
+        border-radius:11px;
+        background:rgba(255,255,255,.08);
+        border:1px solid rgba(255,255,255,.08);
+        display:flex;align-items:center;justify-content:center;
+    }
+    .feature-icon svg{ width:19px;height:19px; color:#c9d5ff; }
+    .feature-text__title{ font-size:14px; font-weight:600; margin:0; color:#fff; }
+    .feature-text__desc{ font-size:13px; margin:2px 0 0; color:rgba(255,255,255,.55); }
+
+    .showcase-bottom{ height:1px; } /* spacer to balance layout */
+
+    /* ---------- Right form panel ---------- */
+    .auth-form-side{
+        padding:56px 56px;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+    }
+
+    .auth-title{
+        font-size:26px;
+        font-weight:700;
+        color:var(--ink-900);
+        margin:0 0 8px;
+        letter-spacing:-0.01em;
+    }
+    .auth-subtitle{
+        margin:0 0 32px;
+        color:var(--ink-500);
+        font-size:14.5px;
+    }
+
+    .form{ display:flex; flex-direction:column; gap:20px; }
+
+    .field__label{
+        display:block;
+        font-size:13.5px;
+        font-weight:600;
+        color:var(--ink-900);
+        margin-bottom:7px;
+    }
+
+    .input-group{ position:relative; display:flex; align-items:center; }
+    .input-group__icon{
+        position:absolute;
+        left:14px;
+        width:17px;height:17px;
+        color:#98a2b3;
+        pointer-events:none;
+    }
+    .input{
+        width:100%;
+        box-sizing:border-box;
+        padding:12px 14px 12px 41px;
+        border:1px solid var(--line);
+        border-radius:10px;
+        font-size:14.5px;
+        color:var(--ink-900);
+        background:#fff;
+        outline:none;
+        transition:border-color .15s, box-shadow .15s;
+    }
+    .input::placeholder{ color:#9aa1b0; }
+    .input:focus{
+        border-color:var(--blue-500);
+        box-shadow:0 0 0 3px rgba(59,99,240,.12);
+    }
+    .input--password{ padding-right:40px; }
+
+    .pw-toggle{
+        position:absolute;
+        right:12px;
+        background:none;
+        border:none;
+        padding:4px;
+        cursor:pointer;
+        color:#98a2b3;
+        display:flex;
+    }
+    .pw-toggle svg{ width:18px;height:18px; }
+    .pw-toggle:hover{ color:#667085; }
+
+    .row-between{
+        display:flex;
+        align-items:center;
+        justify-content:flex-end;
+        margin-top:-8px;
+    }
+    .link{
+        color:var(--blue-600);
+        font-size:13.5px;
+        font-weight:600;
+        text-decoration:none;
+    }
+    .link:hover{ text-decoration:underline; }
+
+    .btn-primary{
+        margin-top:4px;
+        width:100%;
+        padding:13px 16px;
+        border:none;
+        border-radius:10px;
+        background:var(--blue-600);
+        color:#fff;
+        font-size:15px;
+        font-weight:600;
+        cursor:pointer;
+        transition:background .15s, transform .05s;
+    }
+    .btn-primary:hover{ background:var(--blue-500); }
+    .btn-primary:active{ transform:translateY(1px); }
+
+    .auth-footer{
+        margin:28px 0 0;
+        text-align:center;
+        font-size:14px;
+        color:var(--ink-500);
+    }
+    .auth-footer a{
+        color:var(--blue-600);
+        font-weight:600;
+        text-decoration:none;
+    }
+    .auth-footer a:hover{ text-decoration:underline; }
+
+    .alert{
+        padding:11px 14px;
+        border-radius:10px;
+        font-size:13.5px;
+        margin-bottom:18px;
+    }
+    .alert-error{ background:#fef2f2; color:#b42318; border:1px solid #fecdca; }
+    .alert-success{ background:#ecfdf3; color:#067647; border:1px solid #abefc6; }
+
+    @media (max-width: 860px){
+        .auth-card{ grid-template-columns:1fr; }
+        .auth-showcase{ display:none; }
+        .auth-form-side{ padding:40px 28px; }
+    }
+</style>
+
+<div class="auth-wrap">
+    <div class="auth-card">
+
+        <!-- Left: brand / feature showcase -->
+        <div class="auth-showcase">
+            <div class="showcase-top">
+                <a class="brand" th:href="@{/}">
+                    <span class="brand__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 21h18"/>
+                            <path d="M5 21V7l7-5 7 5v14"/>
+                            <path d="M9 21v-4h6v4"/>
+                        </svg>
+                    </span>
+                    Hotel Management System
+                </a>
+            </div>
+
+            <div class="showcase-mid">
+                <h1 class="showcase-title">Welcome back<br>to your <em>dashboard</em></h1>
+                <p class="showcase-subtitle">Sign in to continue managing rooms, bookings and guests.</p>
+
+                <ul class="feature-list">
+                    <li class="feature-item">
+                        <span class="feature-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="4" width="18" height="18" rx="2"/>
+                                <path d="M16 2v4M8 2v4M3 10h18"/>
+                            </svg>
+                        </span>
+                        <div class="feature-text">
+                            <p class="feature-text__title">Smart Bookings</p>
+                            <p class="feature-text__desc">Manage reservations seamlessly</p>
+                        </div>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M2 20v-7a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v7"/>
+                                <path d="M2 13V7a2 2 0 0 1 2-2h6v6"/>
+                                <path d="M2 20h20"/>
+                            </svg>
+                        </span>
+                        <div class="feature-text">
+                            <p class="feature-text__title">Room Management</p>
+                            <p class="feature-text__desc">Organize rooms and availability</p>
+                        </div>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 3v18h18"/>
+                                <path d="M8 17V10M13 17V6M18 17v-4"/>
+                            </svg>
+                        </span>
+                        <div class="feature-text">
+                            <p class="feature-text__title">Real-time Reports</p>
+                            <p class="feature-text__desc">Track performance and growth</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="showcase-bottom"></div>
+        </div>
+
+        <!-- Right: sign in form -->
+        <div class="auth-form-side">
+            <h2 class="auth-title">Sign in to your account</h2>
+            <p class="auth-subtitle">Enter your credentials to access your account.</p>
+
+            <div th:if="${errorMessage}" class="alert alert-error" th:text="${errorMessage}"></div>
+            <div th:if="${infoMessage}" class="alert alert-success" th:text="${infoMessage}"></div>
+
+            <form th:action="@{/login}" method="post" class="form">
+                <div class="field">
+                    <label class="field__label" for="username">Username</label>
+                    <div class="input-group">
+                        <svg class="input-group__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                        <input class="input" type="text" id="username" name="username"
+                               placeholder="Enter username"
+                               autocomplete="username" required autofocus>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="field__label" for="password">Password</label>
+                    <div class="input-group">
+                        <svg class="input-group__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2"/>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                        </svg>
+                        <input class="input input--password" type="password" id="password" name="password"
+                               placeholder="Enter password"
+                               autocomplete="current-password" required>
+                        <button type="button" class="pw-toggle" id="pwToggle" aria-label="Show password">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary">Sign in</button>
+            </form>
+
+            <p class="auth-footer">
+                New customer? <a th:href="@{/register}">Create an account</a>
+            </p>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    (function () {
+        var toggle = document.getElementById('pwToggle');
+        var pw = document.getElementById('password');
+        if (!toggle || !pw) return;
+        toggle.addEventListener('click', function () {
+            var isHidden = pw.type === 'password';
+            pw.type = isHidden ? 'text' : 'password';
+            toggle.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
+        });
+    })();
+</script>
+
+</body>
+</html>

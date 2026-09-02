@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('Check-in')}"></head>
+<body>
+<div class="app-shell">
+    <aside th:replace="~{fragments/sidebar :: sidebar('check-in')}"></aside>
+    <div class="app-content">
+        <header th:replace="~{fragments/header :: topbar('Check-in')}"></header>
+        <main class="main-content">
+            <div class="page">
+
+                <div class="page-head">
+                    <div>
+                        <h1 class="page-title">Check-in</h1>
+                        <p class="page-subtitle">Guests with confirmed bookings arriving today.</p>
+                    </div>
+                </div>
+
+                <div th:replace="~{fragments/components :: alert('error', ${errorMessage})}"></div>
+
+                <section class="card">
+                    <div class="table-wrap">
+                        <table class="table" aria-label="Bookings ready for check-in">
+                            <thead>
+                                <tr>
+                                    <th>Reference</th>
+                                    <th>Guest</th>
+                                    <th>Room</th>
+                                    <th>Check-in</th>
+                                    <th>Check-out</th>
+                                    <th class="table__cell-num">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="b : ${bookings}">
+                                    <td class="table__title" th:text="${b.bookingReference}">BK123</td>
+                                    <td th:text="${b.customerName}">Jane Doe</td>
+                                    <td th:text="${b.roomNumber}">101</td>
+                                    <td th:text="${b.checkInDate}">2026-01-01</td>
+                                    <td th:text="${b.checkOutDate}">2026-01-05</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <form th:action="@{/reception/check-in/{id}(id=${b.id})}" method="post" class="inline-form">
+                                                <button type="submit" class="btn btn-primary btn-sm">Check in</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr th:if="${#lists.isEmpty(bookings)}"
+                                    th:replace="~{fragments/components :: emptyRow('No guests awaiting check-in.', 6)}"></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+</div>
+<div th:replace="~{fragments/footer :: scripts}"></div>
+</body>
+</html>

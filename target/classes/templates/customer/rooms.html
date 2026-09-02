@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('Browse rooms')}"></head>
+<body>
+<div class="app-shell">
+    <aside th:replace="~{fragments/sidebar :: sidebar('browse-rooms')}"></aside>
+    <div class="app-content">
+        <header th:replace="~{fragments/header :: topbar('Browse rooms')}"></header>
+        <main class="main-content">
+            <div class="page">
+
+                <div class="page-head">
+                    <div>
+                        <h1 class="page-title">Browse rooms</h1>
+                        <p class="page-subtitle">Check availability for your dates.</p>
+                    </div>
+                </div>
+
+                <section class="card">
+                    <form th:action="@{/customer/rooms}" method="get" class="form">
+                        <div class="form-grid">
+                            <div class="field">
+                                <label class="field__label" for="checkIn">Check-in</label>
+                                <input class="input" type="date" id="checkIn" name="checkIn" th:value="${checkIn}">
+                            </div>
+                            <div class="field">
+                                <label class="field__label" for="checkOut">Check-out</label>
+                                <input class="input" type="date" id="checkOut" name="checkOut" th:value="${checkOut}">
+                            </div>
+                            <div class="field field--actions">
+                                <button type="submit" class="btn btn-primary">Search availability</button>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+
+                <div class="room-grid">
+                    <div class="room-card" th:each="r : ${rooms}">
+                        <div class="room-card__head">
+                            <h3 class="room-card__title" th:text="|${r.roomTypeName} — Room ${r.roomNumber}|">Double — Room 101</h3>
+                            <th:block th:replace="~{fragments/components :: statusBadge(${r.status})}"></th:block>
+                        </div>
+                        <p class="room-card__desc" th:text="${r.description}">Comfortable room with a great view.</p>
+                        <p class="room-card__price" th:text="'$' + ${r.pricePerNight} + ' / night'">$120 / night</p>
+                        <div class="room-card__actions">
+                            <a th:href="@{/customer/rooms/{id}(id=${r.id})}" class="btn btn-secondary btn-sm">Details</a>
+                            <a th:href="@{/customer/bookings/new(roomId=${r.id})}" class="btn btn-primary btn-sm">Book</a>
+                        </div>
+                    </div>
+                    <p th:if="${#lists.isEmpty(rooms)}" class="empty">
+                        <span class="empty__text">No rooms available for the selected dates.</span>
+                    </p>
+                </div>
+
+            </div>
+        </main>
+    </div>
+</div>
+<div th:replace="~{fragments/footer :: scripts}"></div>
+</body>
+</html>

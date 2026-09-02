@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.example.app.repository.RoomRepositoryTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.402 s -- in com.example.app.repository.RoomRepositoryTest

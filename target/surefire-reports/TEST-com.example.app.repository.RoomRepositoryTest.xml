@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.example.app.repository.RoomRepositoryTest" time="4.402" tests="3" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="25"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/home/whoami/Desktop/Coding/springboot/hotel-management-system/target/test-classes:/home/whoami/Desktop/Coding/springboot/hotel-management-system/target/classes:/home/whoami/.m2/repository/org/springframework/boot/spring-boot-starter-web/3.3.4/spring-boot-starter-web-3.3.4.jar:/home/whoami/.m2/repository/org/springframework/boot/spring-boot-starter/3.3.4/spring-boot-starter-3.3.4.jar:/home/whoami/.m2/repository/org/springframework/boot/spring-boot/3.3.4/spring-boot-3.3.4.jar:/home/whoami/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.3.4/spring-boot-autoconfigure-3.3.4.jar:/home/whoami/.m2/repository/org/springframework/boot/spring-boot-starter-logging/3.3.4/spring-boot-starter-logging-3.3.4.jar:/home/whoami/.m2/repository/ch/qos/logback/logback-classic/1.5.8/logback-classic-1.5.8.jar:/home/whoami/.m2/repository/ch/qos/logback/logback-core/1.5.8/logback-core-1.5.8.jar:/home/whoami/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.23.1/log4j-to-slf4j-2.23.1.jar:/home/whoami/.m2/repository/org/apache/logging/log4j/log4j-api/2.23.1/log4j-api-2.23.1.jar:/home/whoami/.m2/repository/org/slf4j/jul-to-slf4j/2.0.16/jul-to-slf4j-2.0.16.jar:/home/whoami/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar:/home/whoami/.m2/repository/org/yaml/snakeyaml/2.2/snakeyaml-2.2.jar:/home/whoami/.m2/repository/org/springframework/boot/spring-boot-starter-json/3.3.4/spring-boot-starter-json-3.3.4.jar:/home/whoami/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.17.2/jackson-databind-2.17.2.jar:/home/whoami/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.17.2/jackson-annotations-2.17.2.jar:/home/whoami/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.17.2/jackson-core-2.17.2.jar:/home/whoami/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.17.2/jackson-datatype-jdk8-2.17.2.jar:/home/whoami/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.17.2/jackson-datatype-jsr310-2.17.2.jar:/home/whoami/.m2/repository/com/fasterxml/jackson/module/jackson-module-parameter-names/2.17.2/jackson-module-parameter-names-2.17.2.jar:/home/whoami/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/3.3.4/spring-boot-starter-tomcat-3.3.4.jar:/home/whoami/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/10.1.30/tomcat-embed-core-10.1.30.jar:/home/whoami/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/10.1.30/tomcat-embed-websocket-10.1.30.jar:/home/whoami/.m2/repository/org/springframework/spring-web/6.1.13/spring-web-6.1.13.jar:/home/whoami/.m2/repository/org/springframework/spring-beans/6.1.13/spring-beans-6.1.13.jar:/home/whoami/.m2/repository/io/micrometer/micrometer-observation/1.13.4/micrometer-observation-1.13.4.jar:/home/whoami/.m2/repository/io/micrometer/micrometer-commons/1.13.4/micrometer-commons-1.13.4.jar:/home/whoami/.m2/repository/org/springframework/spring-webmvc/6.1.13/spring-webmvc-6.1.13.jar:/home/whoami/.m2/repository/org/springframework/spring-context/6.1.13/spring-context-6.1.13.jar:/home/whoami/.m2/repository/org/springframework/spring-expression/6.1.13/spring-expression-6.1.13.jar:/home/whoami/.m2/repository/org/springframework/boot/spring-boot-starter-thymeleaf/3.3.4/spring-boot-starter-thymeleaf-3.3.4.jar:/home/whoami/.m2/repository/org/thymeleaf/thymeleaf-spring6/3.1.2.RELEASE/thymeleaf-spring6-3.1.2.RELEASE.jar:/home/whoami/.m2/repository/org/thymeleaf/thymeleaf/3.1.2.RELEASE/thymeleaf-3.1.2.RELEASE.jar:/home/whoami/.m2/repository/org/attoparser/attoparser/2.0.7.RELEASE/attoparser-2.0.7.RELEASE.jar:/home/whoami/.m2/repository/org/unbescape/unbescape/1.1.6.RELEASE/unbescape-1.1.6.RELEASE.jar:/home/whoami/.m2/repository/org/thymeleaf/extras/thymeleaf-extras-springsecurity6/3.1.2.RELEASE/thymeleaf-extras-springsecurity6-3.1.2.RELEASE.jar:/home/whoami/.m2/repository/org/slf4j/slf4j-api/2.0.16/slf4j-api-2.0.16.jar:/home/whoami/.m2/repository/org/springframework/boot/spring-boot-starter-data-jpa/3.3.4/spring-boot-starter-data-jpa-3.3.4.jar:/home/whoami/.m2/repository/org/springframework/boot/spring-boot-starter-aop/3.3.4/spring-boot-starter-aop-3.3.4.jar:/home/whoami/.m2/repository/org/aspectj/aspectjweaver/1.9.22.1/aspectjweaver-1.9.22.1.jar:/home/whoami/.m2/repository/org/springframework/boot/spring-boot-starter-jdbc/3.3.4/spring-boot-starter-jdbc-3.3.4.jar:/home/whoami/.m2/repository/com/zaxxer/HikariCP/5.1.0/HikariCP-5.1.0.jar:/home/whoami/.m2/repository/org/springframework/spring-jdbc/6.1.13/spring-jdbc-6.1.13.jar:/home/whoami/.m2/repository/org/hibernate/orm/hibernate-core/6.5.3.Final/hibernate-core-6.5.3.Final.jar:/home/whoami/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar:/home/whoami/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar:/home/whoami/.m2/repository/org/jboss/logging/jboss-logging/3.5.3.Final/jboss-logging-3.5.3.Final.jar:/home/whoami/.m2/repository/org/hibernate/common/hibernate-commons-annotations/6.0.6.Final/hibernate-commons-annotations-6.0.6.Final.jar:/home/whoami/.m2/repository/io/smallrye/jandex/3.1.2/jandex-3.1.2.jar:/home/whoami/.m2/repository/com/fasterxml/classmate/1.7.0/classmate-1.7.0.jar:/home/whoami/.m2/repository/net/bytebuddy/byte-buddy/1.14.19/byte-buddy-1.14.19.jar:/home/whoami/.m2/repository/org/glassfish/jaxb/jaxb-runtime/4.0.5/jaxb-runtime-4.0.5.jar:/home/whoami/.m2/repository/org/glassfish/jaxb/jaxb-core/4.0.5/jaxb-core-4.0.5.jar:/home/whoami/.m2/repository/org/eclipse/angus/angus-activation/2.0.2/angus-activation-2.0.2.jar:/home/whoami/.m2/repository/org/glassfish/jaxb/txw2/4.0.5/txw2-4.0.5.jar:/home/whoami/.m2/repository/com/sun/istack/istack-commons-runtime/4.1.2/istack-commons-runtime-4.1.2.jar:/home/whoami/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar:/home/whoami/.m2/repository/org/antlr/antlr4-runtime/4.13.0/antlr4-runtime-4.13.0.jar:/home/whoami/.m2/repository/org/springframework/data/spring-data-jpa/3.3.4/spring-data-jpa-3.3.4.jar:/home/whoami/.m2/repository/org/springframework/data/spring-data-commons/3.3.4/spring-data-commons-3.3.4.jar:/home/whoami/.m2/repository/org/springframework/spring-orm/6.1.13/spring-orm-6.1.13.jar:/home/whoami/.m2/repository/org/springframework/spring-tx/6.1.13/spring-tx-6.1.13.jar:/home/whoami/.m2/repository/org/springframework/spring-aspects/6.1.13/spring-aspects-6.1.13.jar:/home/whoami/.m2/repository/org/springframework/boot/spring-boot-starter-security/3.3.4/spring-boot-starter-security-3.3.4.jar:/home/whoami/.m2/repository/org/springframework/spring-aop/6.1.13/spring-aop-6.1.13.jar:/home/whoami/.m2/repository/org/springframework/security/spring-security-config/6.3.3/spring-security-config-6.3.3.jar:/home/whoami/.m2/repository/org/springframework/security/spring-security-web/6.3.3/spring-security-web-6.3.3.jar:/home/whoami/.m2/repository/org/springframework/boot/spring-boot-starter-validation/3.3.4/spring-boot-starter-validation-3.3.4.jar:/home/whoami/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/10.1.30/tomcat-embed-el-10.1.30.jar:/home/whoami/.m2/repository/org/hibernate/validator/hibernate-validator/8.0.1.Final/hibernate-validator-8.0.1.Final.jar:/home/whoami/.m2/repository/jakarta/validation/jakarta.validation-api/3.0.2/jakarta.validation-api-3.0.2.jar:/home/whoami/.m2/repository/com/mysql/mysql-connector-j/8.3.0/mysql-connector-j-8.3.0.jar:/home/whoami/.m2/repository/com/h2database/h2/2.2.224/h2-2.2.224.jar:/home/whoami/.m2/repository/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar:/home/whoami/.m2/repository/org/springframework/boot/spring-boot-starter-test/3.3.4/spring-boot-starter-test-3.3.4.jar:/home/whoami/.m2/repository/org/springframework/boot/spring-boot-test/3.3.4/spring-boot-test-3.3.4.jar:/home/whoami/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/3.3.4/spring-boot-test-autoconfigure-3.3.4.jar:/home/whoami/.m2/repository/com/jayway/jsonpath/json-path/2.9.0/json-path-2.9.0.jar:/home/whoami/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.2/jakarta.xml.bind-api-4.0.2.jar:/home/whoami/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.3/jakarta.activation-api-2.1.3.jar:/home/whoami/.m2/repository/net/minidev/json-smart/2.5.1/json-smart-2.5.1.jar:/home/whoami/.m2/repository/net/minidev/accessors-smart/2.5.1/accessors-smart-2.5.1.jar:/home/whoami/.m2/repository/org/ow2/asm/asm/9.6/asm-9.6.jar:/home/whoami/.m2/repository/org/assertj/assertj-core/3.25.3/assertj-core-3.25.3.jar:/home/whoami/.m2/repository/org/awaitility/awaitility/4.2.2/awaitility-4.2.2.jar:/home/whoami/.m2/repository/org/hamcrest/hamcrest/2.2/hamcrest-2.2.jar:/home/whoami/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.3/junit-jupiter-5.10.3.jar:/home/whoami/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.3/junit-jupiter-api-5.10.3.jar:/home/whoami/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/whoami/.m2/repository/org/junit/platform/junit-platform-commons/1.10.3/junit-platform-commons-1.10.3.jar:/home/whoami/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/whoami/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.3/junit-jupiter-params-5.10.3.jar:/home/whoami/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.3/junit-jupiter-engine-5.10.3.jar:/home/whoami/.m2/repository/org/junit/platform/junit-platform-engine/1.10.3/junit-platform-engine-1.10.3.jar:/home/whoami/.m2/repository/org/mockito/mockito-core/5.11.0/mockito-core-5.11.0.jar:/home/whoami/.m2/repository/net/bytebuddy/byte-buddy-agent/1.14.19/byte-buddy-agent-1.14.19.jar:/home/whoami/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/home/whoami/.m2/repository/org/mockito/mockito-junit-jupiter/5.11.0/mockito-junit-jupiter-5.11.0.jar:/home/whoami/.m2/repository/org/skyscreamer/jsonassert/1.5.3/jsonassert-1.5.3.jar:/home/whoami/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar:/home/whoami/.m2/repository/org/springframework/spring-core/6.1.13/spring-core-6.1.13.jar:/home/whoami/.m2/repository/org/springframework/spring-jcl/6.1.13/spring-jcl-6.1.13.jar:/home/whoami/.m2/repository/org/springframework/spring-test/6.1.13/spring-test-6.1.13.jar:/home/whoami/.m2/repository/org/xmlunit/xmlunit-core/2.9.1/xmlunit-core-2.9.1.jar:/home/whoami/.m2/repository/org/springframework/security/spring-security-test/6.3.3/spring-security-test-6.3.3.jar:/home/whoami/.m2/repository/org/springframework/security/spring-security-core/6.3.3/spring-security-core-6.3.3.jar:/home/whoami/.m2/repository/org/springframework/security/spring-security-crypto/6.3.3/spring-security-crypto-6.3.3.jar:"/>
+    <property name="java.vm.vendor" value="Microsoft"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="https://www.microsoft.com"/>
+    <property name="user.timezone" value="Asia/Dhaka"/>
+    <property name="org.jboss.logging.provider" value="slf4j"/>
+    <property name="os.name" value="Linux"/>
+    <property name="java.vm.specification.version" value="25"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="/home/whoami/.jdks/ms-25.0.4.1/lib"/>
+    <property name="sun.java.command" value="/home/whoami/Desktop/Coding/springboot/hotel-management-system/target/surefire/surefirebooter-20260902141429677_3.jar /home/whoami/Desktop/Coding/springboot/hotel-management-system/target/surefire 2026-09-02T14-14-29_561-jvmRun1 surefire-20260902141429677_1tmp surefire_0-20260902141429677_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="/home/whoami/Desktop/Coding/springboot/hotel-management-system/target/test-classes:/home/whoami/Desktop/Coding/springboot/hotel-management-system/target/classes:/home/whoami/.m2/repository/org/springframework/boot/spring-boot-starter-web/3.3.4/spring-boot-starter-web-3.3.4.jar:/home/whoami/.m2/repository/org/springframework/boot/spring-boot-starter/3.3.4/spring-boot-starter-3.3.4.jar:/home/whoami/.m2/repository/org/springframework/boot/spring-boot/3.3.4/spring-boot-3.3.4.jar:/home/whoami/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.3.4/spring-boot-autoconfigure-3.3.4.jar:/home/whoami/.m2/repository/org/springframework/boot/spring-boot-starter-logging/3.3.4/spring-boot-starter-logging-3.3.4.jar:/home/whoami/.m2/repository/ch/qos/logback/logback-classic/1.5.8/logback-classic-1.5.8.jar:/home/whoami/.m2/repository/ch/qos/logback/logback-core/1.5.8/logback-core-1.5.8.jar:/home/whoami/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.23.1/log4j-to-slf4j-2.23.1.jar:/home/whoami/.m2/repository/org/apache/logging/log4j/log4j-api/2.23.1/log4j-api-2.23.1.jar:/home/whoami/.m2/repository/org/slf4j/jul-to-slf4j/2.0.16/jul-to-slf4j-2.0.16.jar:/home/whoami/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar:/home/whoami/.m2/repository/org/yaml/snakeyaml/2.2/snakeyaml-2.2.jar:/home/whoami/.m2/repository/org/springframework/boot/spring-boot-starter-json/3.3.4/spring-boot-starter-json-3.3.4.jar:/home/whoami/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.17.2/jackson-databind-2.17.2.jar:/home/whoami/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.17.2/jackson-annotations-2.17.2.jar:/home/whoami/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.17.2/jackson-core-2.17.2.jar:/home/whoami/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.17.2/jackson-datatype-jdk8-2.17.2.jar:/home/whoami/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.17.2/jackson-datatype-jsr310-2.17.2.jar:/home/whoami/.m2/repository/com/fasterxml/jackson/module/jackson-module-parameter-names/2.17.2/jackson-module-parameter-names-2.17.2.jar:/home/whoami/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/3.3.4/spring-boot-starter-tomcat-3.3.4.jar:/home/whoami/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/10.1.30/tomcat-embed-core-10.1.30.jar:/home/whoami/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/10.1.30/tomcat-embed-websocket-10.1.30.jar:/home/whoami/.m2/repository/org/springframework/spring-web/6.1.13/spring-web-6.1.13.jar:/home/whoami/.m2/repository/org/springframework/spring-beans/6.1.13/spring-beans-6.1.13.jar:/home/whoami/.m2/repository/io/micrometer/micrometer-observation/1.13.4/micrometer-observation-1.13.4.jar:/home/whoami/.m2/repository/io/micrometer/micrometer-commons/1.13.4/micrometer-commons-1.13.4.jar:/home/whoami/.m2/repository/org/springframework/spring-webmvc/6.1.13/spring-webmvc-6.1.13.jar:/home/whoami/.m2/repository/org/springframework/spring-context/6.1.13/spring-context-6.1.13.jar:/home/whoami/.m2/repository/org/springframework/spring-expression/6.1.13/spring-expression-6.1.13.jar:/home/whoami/.m2/repository/org/springframework/boot/spring-boot-starter-thymeleaf/3.3.4/spring-boot-starter-thymeleaf-3.3.4.jar:/home/whoami/.m2/repository/org/thymeleaf/thymeleaf-spring6/3.1.2.RELEASE/thymeleaf-spring6-3.1.2.RELEASE.jar:/home/whoami/.m2/repository/org/thymeleaf/thymeleaf/3.1.2.RELEASE/thymeleaf-3.1.2.RELEASE.jar:/home/whoami/.m2/repository/org/attoparser/attoparser/2.0.7.RELEASE/attoparser-2.0.7.RELEASE.jar:/home/whoami/.m2/repository/org/unbescape/unbescape/1.1.6.RELEASE/unbescape-1.1.6.RELEASE.jar:/home/whoami/.m2/repository/org/thymeleaf/extras/thymeleaf-extras-springsecurity6/3.1.2.RELEASE/thymeleaf-extras-springsecurity6-3.1.2.RELEASE.jar:/home/whoami/.m2/repository/org/slf4j/slf4j-api/2.0.16/slf4j-api-2.0.16.jar:/home/whoami/.m2/repository/org/springframework/boot/spring-boot-starter-data-jpa/3.3.4/spring-boot-starter-data-jpa-3.3.4.jar:/home/whoami/.m2/repository/org/springframework/boot/spring-boot-starter-aop/3.3.4/spring-boot-starter-aop-3.3.4.jar:/home/whoami/.m2/repository/org/aspectj/aspectjweaver/1.9.22.1/aspectjweaver-1.9.22.1.jar:/home/whoami/.m2/repository/org/springframework/boot/spring-boot-starter-jdbc/3.3.4/spring-boot-starter-jdbc-3.3.4.jar:/home/whoami/.m2/repository/com/zaxxer/HikariCP/5.1.0/HikariCP-5.1.0.jar:/home/whoami/.m2/repository/org/springframework/spring-jdbc/6.1.13/spring-jdbc-6.1.13.jar:/home/whoami/.m2/repository/org/hibernate/orm/hibernate-core/6.5.3.Final/hibernate-core-6.5.3.Final.jar:/home/whoami/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar:/home/whoami/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar:/home/whoami/.m2/repository/org/jboss/logging/jboss-logging/3.5.3.Final/jboss-logging-3.5.3.Final.jar:/home/whoami/.m2/repository/org/hibernate/common/hibernate-commons-annotations/6.0.6.Final/hibernate-commons-annotations-6.0.6.Final.jar:/home/whoami/.m2/repository/io/smallrye/jandex/3.1.2/jandex-3.1.2.jar:/home/whoami/.m2/repository/com/fasterxml/classmate/1.7.0/classmate-1.7.0.jar:/home/whoami/.m2/repository/net/bytebuddy/byte-buddy/1.14.19/byte-buddy-1.14.19.jar:/home/whoami/.m2/repository/org/glassfish/jaxb/jaxb-runtime/4.0.5/jaxb-runtime-4.0.5.jar:/home/whoami/.m2/repository/org/glassfish/jaxb/jaxb-core/4.0.5/jaxb-core-4.0.5.jar:/home/whoami/.m2/repository/org/eclipse/angus/angus-activation/2.0.2/angus-activation-2.0.2.jar:/home/whoami/.m2/repository/org/glassfish/jaxb/txw2/4.0.5/txw2-4.0.5.jar:/home/whoami/.m2/repository/com/sun/istack/istack-commons-runtime/4.1.2/istack-commons-runtime-4.1.2.jar:/home/whoami/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar:/home/whoami/.m2/repository/org/antlr/antlr4-runtime/4.13.0/antlr4-runtime-4.13.0.jar:/home/whoami/.m2/repository/org/springframework/data/spring-data-jpa/3.3.4/spring-data-jpa-3.3.4.jar:/home/whoami/.m2/repository/org/springframework/data/spring-data-commons/3.3.4/spring-data-commons-3.3.4.jar:/home/whoami/.m2/repository/org/springframework/spring-orm/6.1.13/spring-orm-6.1.13.jar:/home/whoami/.m2/repository/org/springframework/spring-tx/6.1.13/spring-tx-6.1.13.jar:/home/whoami/.m2/repository/org/springframework/spring-aspects/6.1.13/spring-aspects-6.1.13.jar:/home/whoami/.m2/repository/org/springframework/boot/spring-boot-starter-security/3.3.4/spring-boot-starter-security-3.3.4.jar:/home/whoami/.m2/repository/org/springframework/spring-aop/6.1.13/spring-aop-6.1.13.jar:/home/whoami/.m2/repository/org/springframework/security/spring-security-config/6.3.3/spring-security-config-6.3.3.jar:/home/whoami/.m2/repository/org/springframework/security/spring-security-web/6.3.3/spring-security-web-6.3.3.jar:/home/whoami/.m2/repository/org/springframework/boot/spring-boot-starter-validation/3.3.4/spring-boot-starter-validation-3.3.4.jar:/home/whoami/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/10.1.30/tomcat-embed-el-10.1.30.jar:/home/whoami/.m2/repository/org/hibernate/validator/hibernate-validator/8.0.1.Final/hibernate-validator-8.0.1.Final.jar:/home/whoami/.m2/repository/jakarta/validation/jakarta.validation-api/3.0.2/jakarta.validation-api-3.0.2.jar:/home/whoami/.m2/repository/com/mysql/mysql-connector-j/8.3.0/mysql-connector-j-8.3.0.jar:/home/whoami/.m2/repository/com/h2database/h2/2.2.224/h2-2.2.224.jar:/home/whoami/.m2/repository/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar:/home/whoami/.m2/repository/org/springframework/boot/spring-boot-starter-test/3.3.4/spring-boot-starter-test-3.3.4.jar:/home/whoami/.m2/repository/org/springframework/boot/spring-boot-test/3.3.4/spring-boot-test-3.3.4.jar:/home/whoami/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/3.3.4/spring-boot-test-autoconfigure-3.3.4.jar:/home/whoami/.m2/repository/com/jayway/jsonpath/json-path/2.9.0/json-path-2.9.0.jar:/home/whoami/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.2/jakarta.xml.bind-api-4.0.2.jar:/home/whoami/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.3/jakarta.activation-api-2.1.3.jar:/home/whoami/.m2/repository/net/minidev/json-smart/2.5.1/json-smart-2.5.1.jar:/home/whoami/.m2/repository/net/minidev/accessors-smart/2.5.1/accessors-smart-2.5.1.jar:/home/whoami/.m2/repository/org/ow2/asm/asm/9.6/asm-9.6.jar:/home/whoami/.m2/repository/org/assertj/assertj-core/3.25.3/assertj-core-3.25.3.jar:/home/whoami/.m2/repository/org/awaitility/awaitility/4.2.2/awaitility-4.2.2.jar:/home/whoami/.m2/repository/org/hamcrest/hamcrest/2.2/hamcrest-2.2.jar:/home/whoami/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.3/junit-jupiter-5.10.3.jar:/home/whoami/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.3/junit-jupiter-api-5.10.3.jar:/home/whoami/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/whoami/.m2/repository/org/junit/platform/junit-platform-commons/1.10.3/junit-platform-commons-1.10.3.jar:/home/whoami/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/whoami/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.3/junit-jupiter-params-5.10.3.jar:/home/whoami/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.3/junit-jupiter-engine-5.10.3.jar:/home/whoami/.m2/repository/org/junit/platform/junit-platform-engine/1.10.3/junit-platform-engine-1.10.3.jar:/home/whoami/.m2/repository/org/mockito/mockito-core/5.11.0/mockito-core-5.11.0.jar:/home/whoami/.m2/repository/net/bytebuddy/byte-buddy-agent/1.14.19/byte-buddy-agent-1.14.19.jar:/home/whoami/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/home/whoami/.m2/repository/org/mockito/mockito-junit-jupiter/5.11.0/mockito-junit-jupiter-5.11.0.jar:/home/whoami/.m2/repository/org/skyscreamer/jsonassert/1.5.3/jsonassert-1.5.3.jar:/home/whoami/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar:/home/whoami/.m2/repository/org/springframework/spring-core/6.1.13/spring-core-6.1.13.jar:/home/whoami/.m2/repository/org/springframework/spring-jcl/6.1.13/spring-jcl-6.1.13.jar:/home/whoami/.m2/repository/org/springframework/spring-test/6.1.13/spring-test-6.1.13.jar:/home/whoami/.m2/repository/org/xmlunit/xmlunit-core/2.9.1/xmlunit-core-2.9.1.jar:/home/whoami/.m2/repository/org/springframework/security/spring-security-test/6.3.3/spring-security-test-6.3.3.jar:/home/whoami/.m2/repository/org/springframework/security/spring-security-core/6.3.3/spring-security-core-6.3.3.jar:/home/whoami/.m2/repository/org/springframework/security/spring-security-crypto/6.3.3/spring-security-crypto-6.3.3.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/home/whoami"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2026-08-18"/>
+    <property name="java.home" value="/home/whoami/.jdks/ms-25.0.4.1"/>
+    <property name="file.separator" value="/"/>
+    <property name="basedir" value="/home/whoami/Desktop/Coding/springboot/hotel-management-system"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="FILE_LOG_CHARSET" value="UTF-8"/>
+    <property name="java.awt.headless" value="true"/>
+    <property name="surefire.real.class.path" value="/home/whoami/Desktop/Coding/springboot/hotel-management-system/target/surefire/surefirebooter-20260902141429677_3.jar"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="25.0.4.1+1-LTS"/>
+    <property name="user.name" value="whoami"/>
+    <property name="stdout.encoding" value="UTF-8"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="7.0.0-30-generic"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="Microsoft-14951822"/>
+    <property name="localRepository" value="/home/whoami/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/microsoft/openjdk/issues"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="java.version" value="25.0.4.1"/>
+    <property name="user.dir" value="/home/whoami/Desktop/Coding/springboot/hotel-management-system"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="PID" value="80805"/>
+    <property name="CONSOLE_LOG_CHARSET" value="UTF-8"/>
+    <property name="native.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib"/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="UTF-8"/>
+    <property name="java.vendor" value="Microsoft"/>
+    <property name="java.vm.version" value="25.0.4.1+1-LTS"/>
+    <property name="stdin.encoding" value="UTF-8"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="69.0"/>
+    <property name="LOGGED_APPLICATION_NAME" value="[hotel-management-system] "/>
+  </properties>
+  <testcase name="findAvailableRooms_includesRoomWhenDatesDoNotOverlap" classname="com.example.app.repository.RoomRepositoryTest" time="0.636">
+    <system-out><![CDATA[14:14:30.471 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.example.app.repository.RoomRepositoryTest]: RoomRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+14:14:30.620 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.example.app.AppApplication for test class com.example.app.repository.RoomRepositoryTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.4)
+
+2026-09-02T14:14:30.993+06:00  INFO 80805 --- [hotel-management-system] [           main] c.e.app.repository.RoomRepositoryTest    : Starting RoomRepositoryTest using Java 25.0.4.1 with PID 80805 (started by whoami in /home/whoami/Desktop/Coding/springboot/hotel-management-system)
+2026-09-02T14:14:30.994+06:00 DEBUG 80805 --- [hotel-management-system] [           main] c.e.app.repository.RoomRepositoryTest    : Running with Spring Boot v3.3.4, Spring v6.1.13
+2026-09-02T14:14:30.995+06:00  INFO 80805 --- [hotel-management-system] [           main] c.e.app.repository.RoomRepositoryTest    : No active profile set, falling back to 1 default profile: "default"
+2026-09-02T14:14:31.361+06:00  INFO 80805 --- [hotel-management-system] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-02T14:14:31.422+06:00  INFO 80805 --- [hotel-management-system] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 53 ms. Found 6 JPA repository interfaces.
+2026-09-02T14:14:31.479+06:00  INFO 80805 --- [hotel-management-system] [           main] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
+2026-09-02T14:14:31.663+06:00  INFO 80805 --- [hotel-management-system] [           main] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:5ac6e326-500c-424a-9e2b-b6808effdcfa;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2026-09-02T14:14:31.947+06:00  INFO 80805 --- [hotel-management-system] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-09-02T14:14:31.989+06:00  INFO 80805 --- [hotel-management-system] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2026-09-02T14:14:32.018+06:00  INFO 80805 --- [hotel-management-system] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-09-02T14:14:32.299+06:00  INFO 80805 --- [hotel-management-system] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-02T14:14:32.340+06:00  WARN 80805 --- [hotel-management-system] [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-09-02T14:14:33.157+06:00  INFO 80805 --- [hotel-management-system] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: 
+    drop table if exists bookings cascade 
+Hibernate: 
+    drop table if exists customers cascade 
+Hibernate: 
+    drop table if exists payments cascade 
+Hibernate: 
+    drop table if exists room_types cascade 
+Hibernate: 
+    drop table if exists rooms cascade 
+Hibernate: 
+    drop table if exists users cascade 
+Hibernate: 
+    create table bookings (
+        check_in_date date not null,
+        check_out_date date not null,
+        number_of_guests integer not null,
+        total_amount numeric(10,2) not null,
+        created_at timestamp(6) not null,
+        customer_id bigint not null,
+        id bigint generated by default as identity,
+        room_id bigint not null,
+        booking_reference varchar(20) not null unique,
+        booking_status enum ('CANCELLED','CHECKED_IN','CHECKED_OUT','CONFIRMED','PENDING') not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table customers (
+        date_of_birth date not null,
+        id bigint generated by default as identity,
+        user_id bigint not null unique,
+        identification_number varchar(50) not null unique,
+        address varchar(255) not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table payments (
+        amount numeric(10,2) not null,
+        booking_id bigint not null,
+        id bigint generated by default as identity,
+        payment_date timestamp(6) not null,
+        transaction_reference varchar(40) not null unique,
+        payment_method enum ('BANK_TRANSFER','CARD','CASH','MOBILE_PAYMENT') not null,
+        payment_status enum ('FAILED','PAID','PENDING','REFUNDED') not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table room_types (
+        base_price numeric(10,2) not null,
+        capacity integer not null,
+        id bigint generated by default as identity,
+        name varchar(40) not null unique,
+        description varchar(500),
+        primary key (id)
+    )
+Hibernate: 
+    create table rooms (
+        floor integer not null,
+        price_per_night numeric(10,2) not null,
+        id bigint generated by default as identity,
+        room_type_id bigint not null,
+        room_number varchar(10) not null unique,
+        description varchar(500),
+        status enum ('AVAILABLE','MAINTENANCE','OCCUPIED','RESERVED') not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table users (
+        enabled boolean not null,
+        created_at timestamp(6) not null,
+        id bigint generated by default as identity,
+        updated_at timestamp(6) not null,
+        phone varchar(20),
+        username varchar(50) not null unique,
+        first_name varchar(60) not null,
+        last_name varchar(60) not null,
+        email varchar(120) not null unique,
+        password varchar(255) not null,
+        role enum ('ADMIN','CUSTOMER','RECEPTIONIST') not null,
+        primary key (id)
+    )
+Hibernate: 
+    alter table if exists bookings 
+       add constraint FKbvfibgflhsb0g2hnjauiv5khs 
+       foreign key (customer_id) 
+       references customers
+Hibernate: 
+    alter table if exists bookings 
+       add constraint FKrgoycol97o21kpjodw1qox4nc 
+       foreign key (room_id) 
+       references rooms
+Hibernate: 
+    alter table if exists customers 
+       add constraint FKrh1g1a20omjmn6kurd35o3eit 
+       foreign key (user_id) 
+       references users
+Hibernate: 
+    alter table if exists payments 
+       add constraint FKc52o2b1jkxttngufqp3t7jr3h 
+       foreign key (booking_id) 
+       references bookings
+Hibernate: 
+    alter table if exists rooms 
+       add constraint FKh9m2n1paq5hmd3u0klfl7wsfv 
+       foreign key (room_type_id) 
+       references room_types
+2026-09-02T14:14:33.213+06:00  INFO 80805 --- [hotel-management-system] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-02T14:14:33.565+06:00  INFO 80805 --- [hotel-management-system] [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-09-02T14:14:34.010+06:00  INFO 80805 --- [hotel-management-system] [           main] c.e.app.repository.RoomRepositoryTest    : Started RoomRepositoryTest in 3.299 seconds (process running for 4.225)
+Hibernate: 
+    insert 
+    into
+        room_types
+        (base_price, capacity, description, name, id) 
+    values
+        (?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        rooms
+        (description, floor, price_per_night, room_number, room_type_id, status, id) 
+    values
+        (?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        users
+        (created_at, email, enabled, first_name, last_name, password, phone, role, updated_at, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        customers
+        (address, date_of_birth, identification_number, user_id, id) 
+    values
+        (?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        bookings
+        (booking_reference, booking_status, check_in_date, check_out_date, created_at, customer_id, number_of_guests, room_id, total_amount, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.description,
+        r1_0.floor,
+        r1_0.price_per_night,
+        r1_0.room_number,
+        r1_0.room_type_id,
+        r1_0.status 
+    from
+        rooms r1_0 
+    where
+        r1_0.status<>'MAINTENANCE' 
+        and r1_0.id not in (select
+            b1_0.room_id 
+        from
+            bookings b1_0 
+        where
+            b1_0.booking_status<>'CANCELLED' 
+            and b1_0.check_in_date<? 
+            and b1_0.check_out_date>?)
+]]></system-out>
+    <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (/home/whoami/.m2/repository/net/bytebuddy/byte-buddy-agent/1.14.19/byte-buddy-agent-1.14.19.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+  </testcase>
+  <testcase name="findByRoomNumber_returnsSavedRoom" classname="com.example.app.repository.RoomRepositoryTest" time="0.036">
+    <system-out><![CDATA[Hibernate: 
+    insert 
+    into
+        room_types
+        (base_price, capacity, description, name, id) 
+    values
+        (?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        rooms
+        (description, floor, price_per_night, room_number, room_type_id, status, id) 
+    values
+        (?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        users
+        (created_at, email, enabled, first_name, last_name, password, phone, role, updated_at, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        customers
+        (address, date_of_birth, identification_number, user_id, id) 
+    values
+        (?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        bookings
+        (booking_reference, booking_status, check_in_date, check_out_date, created_at, customer_id, number_of_guests, room_id, total_amount, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.description,
+        r1_0.floor,
+        r1_0.price_per_night,
+        r1_0.room_number,
+        r1_0.room_type_id,
+        r1_0.status 
+    from
+        rooms r1_0 
+    where
+        r1_0.room_number=?
+]]></system-out>
+  </testcase>
+  <testcase name="findAvailableRooms_excludesRoomWithOverlappingBooking" classname="com.example.app.repository.RoomRepositoryTest" time="0.026">
+    <system-out><![CDATA[Hibernate: 
+    insert 
+    into
+        room_types
+        (base_price, capacity, description, name, id) 
+    values
+        (?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        rooms
+        (description, floor, price_per_night, room_number, room_type_id, status, id) 
+    values
+        (?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        users
+        (created_at, email, enabled, first_name, last_name, password, phone, role, updated_at, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        customers
+        (address, date_of_birth, identification_number, user_id, id) 
+    values
+        (?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        bookings
+        (booking_reference, booking_status, check_in_date, check_out_date, created_at, customer_id, number_of_guests, room_id, total_amount, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.description,
+        r1_0.floor,
+        r1_0.price_per_night,
+        r1_0.room_number,
+        r1_0.room_type_id,
+        r1_0.status 
+    from
+        rooms r1_0 
+    where
+        r1_0.status<>'MAINTENANCE' 
+        and r1_0.id not in (select
+            b1_0.room_id 
+        from
+            bookings b1_0 
+        where
+            b1_0.booking_status<>'CANCELLED' 
+            and b1_0.check_in_date<? 
+            and b1_0.check_out_date>?)
+]]></system-out>
+  </testcase>
+</testsuite>

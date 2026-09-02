@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('My profile')}"></head>
+<body>
+<div class="app-shell">
+    <aside th:replace="~{fragments/sidebar :: sidebar('profile')}"></aside>
+    <div class="app-content">
+        <header th:replace="~{fragments/header :: topbar('My profile')}"></header>
+        <main class="main-content">
+            <div class="page">
+
+                <div class="page-head">
+                    <div>
+                        <h1 class="page-title">My profile</h1>
+                        <p class="page-subtitle">Your contact details. Name and email are tied to your booking history.</p>
+                    </div>
+                </div>
+
+                <div th:replace="~{fragments/components :: alert('error', ${errorMessage})}"></div>
+
+                <section class="card">
+                    <form th:action="@{/customer/profile}" th:object="${customerDto}" method="post" class="form">
+                        <input type="hidden" th:field="*{id}">
+                        <input type="hidden" th:field="*{userId}">
+
+                        <div class="form-grid">
+                            <div class="field">
+                                <label class="field__label">First name</label>
+                                <input class="input" type="text" th:value="${customerDto.firstName}" readonly aria-readonly="true">
+                            </div>
+                            <div class="field">
+                                <label class="field__label">Last name</label>
+                                <input class="input" type="text" th:value="${customerDto.lastName}" readonly aria-readonly="true">
+                            </div>
+                            <div class="field">
+                                <label class="field__label">Email</label>
+                                <input class="input" type="text" th:value="${customerDto.email}" readonly aria-readonly="true">
+                            </div>
+                            <div class="field">
+                                <label class="field__label">Phone</label>
+                                <input class="input" type="text" th:value="${customerDto.phone}" readonly aria-readonly="true">
+                            </div>
+                            <div class="field">
+                                <label class="field__label" for="address">Address</label>
+                                <input class="input" type="text" id="address" th:field="*{address}" required>
+                            </div>
+                            <div class="field">
+                                <label class="field__label" for="dateOfBirth">Date of birth</label>
+                                <input class="input" type="date" id="dateOfBirth" th:field="*{dateOfBirth}" required>
+                            </div>
+                            <div class="field">
+                                <label class="field__label" for="identificationNumber">ID number</label>
+                                <input class="input" type="text" id="identificationNumber" th:field="*{identificationNumber}" required>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </section>
+
+            </div>
+        </main>
+    </div>
+</div>
+<div th:replace="~{fragments/footer :: scripts}"></div>
+</body>
+</html>

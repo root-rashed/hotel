@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('Customers')}"></head>
+<body>
+<div class="app-shell">
+    <aside th:replace="~{fragments/sidebar :: sidebar('customers')}"></aside>
+    <div class="app-content">
+        <header th:replace="~{fragments/header :: topbar('Customers')}"></header>
+        <main class="main-content">
+            <div class="page">
+
+                <div class="page-head">
+                    <div>
+                        <h1 class="page-title">Customers</h1>
+                        <p class="page-subtitle">Guest profiles and contact details.</p>
+                    </div>
+                    <div class="page-actions">
+                        <a th:href="@{/reception/customers/new}" class="btn btn-primary">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                            New customer
+                        </a>
+                    </div>
+                </div>
+
+                <div th:replace="~{fragments/components :: alert('error', ${errorMessage})}"></div>
+
+                <section class="card">
+                    <div class="table-wrap">
+                        <table class="table" aria-label="Customers">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>ID number</th>
+                                    <th class="table__cell-num">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="c : ${customers}">
+                                    <td class="table__title" th:text="|${c.firstName} ${c.lastName}|">Jane Doe</td>
+                                    <td th:text="${c.email}">jane@example.com</td>
+                                    <td th:text="${c.phone}">+1 555 000 0000</td>
+                                    <td th:text="${c.identificationNumber}">AB123456</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <a th:href="@{/reception/customers/{id}/edit(id=${c.id})}" class="btn btn-ghost btn-sm">Edit</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr th:if="${#lists.isEmpty(customers)}"
+                                    th:replace="~{fragments/components :: emptyRow('No customers found.', 5)}"></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+</div>
+<div th:replace="~{fragments/footer :: scripts}"></div>
+</body>
+</html>

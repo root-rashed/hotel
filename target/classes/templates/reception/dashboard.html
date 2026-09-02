@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('Reception dashboard')}"></head>
+<body>
+<div class="app-shell">
+    <aside th:replace="~{fragments/sidebar :: sidebar('dashboard')}"></aside>
+    <div class="app-content">
+        <header th:replace="~{fragments/header :: topbar('Reception dashboard')}"></header>
+        <main class="main-content">
+            <div class="page">
+
+                <div class="page-head">
+                    <div>
+                        <h1 class="page-title">Reception dashboard</h1>
+                        <p class="page-subtitle">Today's activity at a glance.</p>
+                    </div>
+                </div>
+
+                <section class="stat-grid" aria-label="Today at a glance">
+                    <div class="stat-card">
+                        <span class="stat-card__icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        </span>
+                        <div class="stat-card__body">
+                            <div class="stat-card__label">Check-ins today</div>
+                            <div class="stat-card__value" th:text="${#lists.size(todaysCheckIns)}">0</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-card__icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+                        </span>
+                        <div class="stat-card__body">
+                            <div class="stat-card__label">Check-outs today</div>
+                            <div class="stat-card__value" th:text="${#lists.size(todaysCheckOuts)}">0</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-card__icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg>
+                        </span>
+                        <div class="stat-card__body">
+                            <div class="stat-card__label">Rooms available</div>
+                            <div class="stat-card__value" th:text="${availableRoomsCount}">0</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-card__icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2v6a6 6 0 0 0 12 0V2M4 2h16M8 10h8M12 14v6M8 20h8"/></svg>
+                        </span>
+                        <div class="stat-card__body">
+                            <div class="stat-card__label">Pending bookings</div>
+                            <div class="stat-card__value" th:text="${#lists.size(pendingBookings)}">0</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="card">
+                    <header class="card__header">
+                        <h2 class="card__title">Recent customers</h2>
+                    </header>
+                    <div class="table-wrap">
+                        <table class="table" aria-label="Recent customers">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="c : ${recentCustomers}">
+                                    <td class="table__title" th:text="|${c.firstName} ${c.lastName}|">Jane Doe</td>
+                                    <td th:text="${c.email}">jane@example.com</td>
+                                    <td th:text="${c.phone}">+1 555 000 0000</td>
+                                </tr>
+                                <tr th:if="${#lists.isEmpty(recentCustomers)}"
+                                    th:replace="~{fragments/components :: emptyRow('No customers yet.', 3)}"></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+</div>
+<div th:replace="~{fragments/footer :: scripts}"></div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('Bookings')}"></head>
+<body>
+<div class="app-shell">
+    <aside th:replace="~{fragments/sidebar :: sidebar('bookings')}"></aside>
+    <div class="app-content">
+        <header th:replace="~{fragments/header :: topbar('Bookings')}"></header>
+        <main class="main-content">
+            <div class="page">
+
+                <div class="page-head">
+                    <div>
+                        <h1 class="page-title">Bookings</h1>
+                        <p class="page-subtitle">Create and manage reservations.</p>
+                    </div>
+                    <div class="page-actions">
+                        <a th:href="@{/reception/bookings/new}" class="btn btn-primary">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                            New booking
+                        </a>
+                    </div>
+                </div>
+
+                <div th:replace="~{fragments/components :: alert('error', ${errorMessage})}"></div>
+
+                <section class="card">
+                    <div class="table-wrap">
+                        <table class="table" aria-label="Bookings">
+                            <thead>
+                                <tr>
+                                    <th>Reference</th>
+                                    <th>Customer</th>
+                                    <th>Room</th>
+                                    <th>Check-in</th>
+                                    <th>Check-out</th>
+                                    <th class="table__cell-num">Total</th>
+                                    <th>Status</th>
+                                    <th class="table__cell-num">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="b : ${bookings}">
+                                    <td class="table__title" th:text="${b.bookingReference}">BK123</td>
+                                    <td th:text="${b.customerName}">Jane Doe</td>
+                                    <td th:text="${b.roomNumber}">101</td>
+                                    <td th:text="${b.checkInDate}">2026-01-01</td>
+                                    <td th:text="${b.checkOutDate}">2026-01-05</td>
+                                    <td class="table__cell-num" th:text="'$' + ${b.totalAmount}">$400</td>
+                                    <td>
+                                        <th:block th:replace="~{fragments/components :: statusBadge(${b.bookingStatus})}"></th:block>
+                                    </td>
+                                    <td>
+                                        <form th:if="${b.bookingStatus.name() != 'CANCELLED' and b.bookingStatus.name() != 'CHECKED_OUT'}"
+                                              th:action="@{/reception/bookings/{id}/cancel(id=${b.id})}" method="post"
+                                              class="inline-form"
+                                              data-confirm="Are you sure you want to cancel this booking? This cannot be undone.">
+                                            <button type="submit" class="btn btn-danger-ghost btn-sm">Cancel</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <tr th:if="${#lists.isEmpty(bookings)}"
+                                    th:replace="~{fragments/components :: emptyRow('No bookings found.', 8)}"></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+</div>
+<div th:replace="~{fragments/footer :: scripts}"></div>
+</body>
+</html>

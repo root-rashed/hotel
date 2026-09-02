@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('Room details')}"></head>
+<body>
+<div class="app-shell">
+    <aside th:replace="~{fragments/sidebar :: sidebar('browse-rooms')}"></aside>
+    <div class="app-content">
+        <header th:replace="~{fragments/header :: topbar('Room details')}"></header>
+        <main class="main-content">
+            <div class="page">
+
+                <div class="page-head">
+                    <div>
+                        <h1 class="page-title" th:text="|${room.roomTypeName} — Room ${room.roomNumber}|">Double — Room 101</h1>
+                        <p class="page-subtitle">Details and pricing for this room.</p>
+                    </div>
+                </div>
+
+                <section class="card">
+                    <dl class="detail-list">
+                        <div class="detail-list__row">
+                            <dt class="detail-list__label">Description</dt>
+                            <dd class="detail-list__value" th:text="${room.description}">Comfortable room with a great view.</dd>
+                        </div>
+                        <div class="detail-list__row">
+                            <dt class="detail-list__label">Floor</dt>
+                            <dd class="detail-list__value" th:text="${room.floor}">1</dd>
+                        </div>
+                        <div class="detail-list__row">
+                            <dt class="detail-list__label">Price</dt>
+                            <dd class="detail-list__value" th:text="'$' + ${room.pricePerNight} + ' / night'">$120 / night</dd>
+                        </div>
+                        <div class="detail-list__row">
+                            <dt class="detail-list__label">Status</dt>
+                            <dd class="detail-list__value"><th:block th:replace="~{fragments/components :: statusBadge(${room.status})}"></th:block></dd>
+                        </div>
+                    </dl>
+                    <div class="form-actions">
+                        <a th:href="@{/customer/bookings/new(roomId=${room.id})}" class="btn btn-primary">Book this room</a>
+                        <a th:href="@{/customer/rooms}" class="btn btn-secondary">Back to rooms</a>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+</div>
+<div th:replace="~{fragments/footer :: scripts}"></div>
+</body>
+</html>

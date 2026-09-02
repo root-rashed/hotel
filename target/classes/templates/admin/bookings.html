@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('All bookings')}"></head>
+<body>
+<div class="app-shell">
+    <aside th:replace="~{fragments/sidebar :: sidebar('bookings')}"></aside>
+    <div class="app-content">
+        <header th:replace="~{fragments/header :: topbar('All bookings')}"></header>
+        <main class="main-content">
+            <div class="page">
+
+                <div class="page-head">
+                    <div>
+                        <h1 class="page-title">All bookings</h1>
+                        <p class="page-subtitle">Monitoring and oversight of every reservation.</p>
+                    </div>
+                </div>
+
+                <div th:replace="~{fragments/components :: alert('error', ${errorMessage})}"></div>
+
+                <section class="card">
+                    <div class="table-wrap">
+                        <table class="table" aria-label="All bookings">
+                            <thead>
+                                <tr>
+                                    <th>Reference</th>
+                                    <th>Customer</th>
+                                    <th>Room</th>
+                                    <th>Check-in</th>
+                                    <th>Check-out</th>
+                                    <th>Guests</th>
+                                    <th class="table__cell-num">Total</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="b : ${bookings}">
+                                    <td class="table__title" th:text="${b.bookingReference}">BK123</td>
+                                    <td th:text="${b.customerName}">Jane Doe</td>
+                                    <td th:text="${b.roomNumber} + ' (' + ${b.roomTypeName} + ')'">101 (Double)</td>
+                                    <td th:text="${b.checkInDate}">2026-01-01</td>
+                                    <td th:text="${b.checkOutDate}">2026-01-05</td>
+                                    <td th:text="${b.numberOfGuests}">2</td>
+                                    <td class="table__cell-num" th:text="'$' + ${b.totalAmount}">$400</td>
+                                    <td>
+                                        <th:block th:replace="~{fragments/components :: statusBadge(${b.bookingStatus})}"></th:block>
+                                    </td>
+                                </tr>
+                                <tr th:if="${#lists.isEmpty(bookings)}"
+                                    th:replace="~{fragments/components :: emptyRow('No bookings found.', 8)}"></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+</div>
+<div th:replace="~{fragments/footer :: scripts}"></div>
+</body>
+</html>

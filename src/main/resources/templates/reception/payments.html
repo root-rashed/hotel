@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('Payments')}"></head>
+<body>
+<div class="app-shell">
+    <aside th:replace="~{fragments/sidebar :: sidebar('payments')}"></aside>
+    <div class="app-content">
+        <header th:replace="~{fragments/header :: topbar('Payments')}"></header>
+        <main class="main-content">
+            <div class="page">
+
+                <div class="page-head">
+                    <div>
+                        <h1 class="page-title">Payments</h1>
+                        <p class="page-subtitle">Record and review guest payments.</p>
+                    </div>
+                </div>
+
+                <div th:replace="~{fragments/components :: alert('error', ${errorMessage})}"></div>
+
+                <details class="record-payment">
+                    <summary class="btn btn-primary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                        Record payment
+                    </summary>
+                    <section class="card">
+                        <form th:action="@{/payments/record}" method="post" class="form">
+                            <div class="form-grid">
+                                <div class="field">
+                                    <label class="field__label" for="bookingId">Booking</label>
+                                    <select class="input" id="bookingId" name="bookingId" required>
+                                        <option th:each="b : ${bookings}" th:value="${b.id}"
+                                                th:text="|${b.bookingReference} - ${b.customerName} ($${b.totalAmount})|"></option>
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <label class="field__label" for="amount">Amount</label>
+                                    <input class="input" type="number" step="0.01" id="amount" name="amount" min="0" required>
+                                </div>
+                                <div class="field">
+                                    <label class="field__label" for="paymentMethod">Method</label>
+                                    <select class="input" id="paymentMethod" name="paymentMethod" required>
+                                        <option th:each="m : ${T(com.example.app.model.enums.PaymentMethod).values()}"
+                                                th:value="${m}" th:text="${m}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Record payment</button>
+                            </div>
+                        </form>
+                    </section>
+                </details>
+
+                <section class="card">
+                    <div class="table-wrap">
+                        <table class="table" aria-label="Payments">
+                            <thead>
+                                <tr>
+                                    <th>Transaction ref</th>
+                                    <th>Booking</th>
+                                    <th class="table__cell-num">Amount</th>
+                                    <th>Method</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="p : ${payments}">
+                                    <td class="table__title" th:text="${p.transactionReference}">TXN-001</td>
+                                    <td th:text="${p.bookingReference}">BK123</td>
+                                    <td class="table__cell-num" th:text="'$' + ${p.amount}">$400</td>
+                                    <td th:text="${p.paymentMethod}">CARD</td>
+                                    <td>
+                                        <th:block th:replace="~{fragments/components :: statusBadge(${p.paymentStatus})}"></th:block>
+                                    </td>
+                                    <td th:text="${p.paymentDate}">2026-01-01</td>
+                                </tr>
+                                <tr th:if="${#lists.isEmpty(payments)}"
+                                    th:replace="~{fragments/components :: emptyRow('No payments recorded yet.', 6)}"></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+</div>
+<div th:replace="~{fragments/footer :: scripts}"></div>
+</body>
+</html>

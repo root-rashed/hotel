@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('Customer form')}"></head>
+<body>
+<div class="app-shell">
+    <aside th:replace="~{fragments/sidebar :: sidebar('customers')}"></aside>
+    <div class="app-content">
+        <header th:replace="~{fragments/header :: topbar('Customer')}"></header>
+        <main class="main-content">
+            <div class="page">
+
+                <div class="page-head">
+                    <div>
+                        <h1 class="page-title" th:text="${customerDto.id} == null ? 'New customer' : 'Edit customer'">New customer</h1>
+                        <p class="page-subtitle">Add a guest profile for front-desk bookings.</p>
+                    </div>
+                </div>
+
+                <div th:replace="~{fragments/components :: alert('error', ${errorMessage})}"></div>
+
+                <section class="card">
+                    <form th:action="@{/reception/customers}" th:object="${customerDto}" method="post" class="form">
+                        <input type="hidden" th:field="*{id}">
+                        <input type="hidden" th:field="*{userId}">
+
+                        <div class="form-grid" th:if="${customerDto.id} == null">
+                            <div class="field">
+                                <label class="field__label" for="username">Username</label>
+                                <input class="input" type="text" id="username" th:field="*{username}" required>
+                            </div>
+                            <div class="field">
+                                <label class="field__label" for="password">Password</label>
+                                <input class="input" type="password" id="password" name="password" required minlength="8">
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="field">
+                                <label class="field__label" for="firstName">First name</label>
+                                <input class="input" type="text" id="firstName" th:field="*{firstName}" required
+                                       th:readonly="${customerDto.id} != null">
+                            </div>
+                            <div class="field">
+                                <label class="field__label" for="lastName">Last name</label>
+                                <input class="input" type="text" id="lastName" th:field="*{lastName}" required
+                                       th:readonly="${customerDto.id} != null">
+                            </div>
+                            <div class="field">
+                                <label class="field__label" for="email">Email</label>
+                                <input class="input" type="email" id="email" th:field="*{email}" required
+                                       th:readonly="${customerDto.id} != null">
+                            </div>
+                            <div class="field">
+                                <label class="field__label" for="phone">Phone</label>
+                                <input class="input" type="text" id="phone" th:field="*{phone}"
+                                       th:readonly="${customerDto.id} != null">
+                            </div>
+                            <div class="field">
+                                <label class="field__label" for="address">Address</label>
+                                <input class="input" type="text" id="address" th:field="*{address}" required>
+                            </div>
+                            <div class="field">
+                                <label class="field__label" for="dateOfBirth">Date of birth</label>
+                                <input class="input" type="date" id="dateOfBirth" th:field="*{dateOfBirth}" required>
+                            </div>
+                            <div class="field">
+                                <label class="field__label" for="identificationNumber">ID number</label>
+                                <input class="input" type="text" id="identificationNumber" th:field="*{identificationNumber}" required>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                            <a th:href="@{/reception/customers}" class="btn btn-secondary">Cancel</a>
+                        </div>
+                    </form>
+                </section>
+
+            </div>
+        </main>
+    </div>
+</div>
+<div th:replace="~{fragments/footer :: scripts}"></div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('User form')}"></head>
+<body>
+<div class="app-shell">
+    <aside th:replace="~{fragments/sidebar :: sidebar('users')}"></aside>
+    <div class="app-content">
+        <header th:replace="~{fragments/header :: topbar('User')}"></header>
+        <main class="main-content">
+            <div class="page">
+
+                <div class="page-head">
+                    <div>
+                        <h1 class="page-title" th:text="${userDto.id} == null ? 'New user' : 'Edit user'">New user</h1>
+                        <p class="page-subtitle">Staff accounts and their access roles.</p>
+                    </div>
+                </div>
+
+                <div th:replace="~{fragments/components :: alert('error', ${errorMessage})}"></div>
+
+                <section class="card">
+                    <form th:action="@{/admin/users}" th:object="${userDto}" method="post" class="form">
+                        <input type="hidden" th:field="*{id}">
+
+                        <div class="form-grid">
+                            <div class="field">
+                                <label class="field__label" for="username">Username</label>
+                                <input class="input" type="text" id="username" th:field="*{username}" required autofocus>
+                            </div>
+                            <div class="field">
+                                <label class="field__label" for="email">Email</label>
+                                <input class="input" type="email" id="email" th:field="*{email}" required>
+                            </div>
+                            <div class="field">
+                                <label class="field__label" for="password">
+                                    Password
+                                    <span class="field__hint" th:if="${userDto.id} != null">(leave blank to keep current)</span>
+                                </label>
+                                <input class="input" type="password" id="password" th:field="*{password}" minlength="8">
+                            </div>
+                            <div class="field">
+                                <label class="field__label" for="firstName">First name</label>
+                                <input class="input" type="text" id="firstName" th:field="*{firstName}" required>
+                            </div>
+                            <div class="field">
+                                <label class="field__label" for="lastName">Last name</label>
+                                <input class="input" type="text" id="lastName" th:field="*{lastName}" required>
+                            </div>
+                            <div class="field">
+                                <label class="field__label" for="phone">Phone</label>
+                                <input class="input" type="text" id="phone" th:field="*{phone}">
+                            </div>
+                            <div class="field">
+                                <label class="field__label" for="role">Role</label>
+                                <select class="input" id="role" th:field="*{role}" required>
+                                    <option th:each="r : ${T(com.example.app.model.enums.Role).values()}"
+                                            th:value="${r}" th:text="${r}"></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                            <a th:href="@{/admin/users}" class="btn btn-secondary">Cancel</a>
+                        </div>
+                    </form>
+                </section>
+
+            </div>
+        </main>
+    </div>
+</div>
+<div th:replace="~{fragments/footer :: scripts}"></div>
+</body>
+</html>

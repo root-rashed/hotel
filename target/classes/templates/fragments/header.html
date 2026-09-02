@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+
+<header class="topbar" th:fragment="topbar(title)">
+    <div class="topbar-left">
+        <button class="icon-btn hamburger" type="button" aria-label="Toggle navigation"
+                aria-expanded="false" data-sidebar-toggle>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M3 6h18M3 12h18M3 18h18"/>
+            </svg>
+        </button>
+        <div class="topbar-title">
+            <span class="topbar-title__main" th:text="${title}">Dashboard</span>
+            <span class="topbar-title__sub" th:text="${#temporals.format(#temporals.createToday(), 'EEEE, d MMM yyyy')}">Tuesday, 1 Jan 2026</span>
+        </div>
+    </div>
+
+    <div class="topbar-right">
+        <div class="dropdown" data-dropdown>
+            <button class="user-chip" type="button" aria-haspopup="true" aria-expanded="false" data-dropdown-toggle>
+                <span class="user-chip__avatar" sec:authentication="name">U</span>
+                <span class="user-chip__info">
+                    <span class="user-chip__name" sec:authentication="name">username</span>
+                    <span class="user-chip__role">
+                        <span sec:authorize="hasRole('ADMIN')">Administrator</span>
+                        <span sec:authorize="hasRole('RECEPTIONIST')">Receptionist</span>
+                        <span sec:authorize="hasRole('CUSTOMER')">Guest</span>
+                    </span>
+                </span>
+                <span class="user-chip__caret" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+            </button>
+
+            <div class="dropdown-menu" data-dropdown-menu>
+                <div class="dropdown-header">
+                    Signed in as <strong sec:authentication="name">user</strong>
+                </div>
+
+                <a sec:authorize="hasRole('ADMIN')" class="dropdown-item" th:href="@{/admin/dashboard}">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+                    Dashboard
+                </a>
+                <a sec:authorize="hasRole('CUSTOMER')" class="dropdown-item" th:href="@{/customer/profile}">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    My Profile
+                </a>
+
+                <form th:action="@{/logout}" method="post">
+                    <button type="submit" class="dropdown-item is-danger">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>
+                        Sign out
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
+</body>
+</html>
