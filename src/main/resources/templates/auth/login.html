@@ -377,11 +377,14 @@
             <p class="auth-footer">
                 New customer? <a th:href="@{/register}">Create an account</a>
             </p>
-         <p>
-                ADMIN:          admin123    admin123<br>
-                CUSTOMER:       rashed123   rashed123<br>
-                RECEPTIONISTS:  reception   reception12345
-            </p>
+            <div style="margin-top:20px;display:flex;flex-direction:column;gap:8px;align-items:center;">
+                <p style="margin:0;font-size:12px;color:var(--ink-500);font-weight:600;">Demo Accounts — click to auto-fill</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;">
+                    <a href="javascript:void(0)" class="demo-cred" data-user="admin123" data-pass="admin123" style="padding:6px 12px;border-radius:8px;background:#f1f5f9;border:1px solid var(--line);font-size:13px;color:var(--ink-900);text-decoration:none;font-weight:500;cursor:pointer;transition:background .15s,border-color .15s;">👤 admin / admin12345</a>
+                    <a href="javascript:void(0)" class="demo-cred" data-user="rashed123" data-pass="rashed123" style="padding:6px 12px;border-radius:8px;background:#f1f5f9;border:1px solid var(--line);font-size:13px;color:var(--ink-900);text-decoration:none;font-weight:500;cursor:pointer;transition:background .15s,border-color .15s;">👤 rashed / rashed12345</a>
+                    <a href="javascript:void(0)" class="demo-cred" data-user="reception" data-pass="reception12345" style="padding:6px 12px;border-radius:8px;background:#f1f5f9;border:1px solid var(--line);font-size:13px;color:var(--ink-900);text-decoration:none;font-weight:500;cursor:pointer;transition:background .15s,border-color .15s;">👤 reception / reception12345</a>
+                </div>
+            </div>
         </div>
 
     </div>
@@ -396,6 +399,17 @@
             var isHidden = pw.type === 'password';
             pw.type = isHidden ? 'text' : 'password';
             toggle.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
+        });
+
+        // Auto-fill demo credentials
+        var creds = document.querySelectorAll('.demo-cred');
+        var userIn = document.getElementById('username');
+        var passIn = document.getElementById('password');
+        creds.forEach(function (c) {
+            c.addEventListener('click', function () {
+                if (userIn) userIn.value = c.getAttribute('data-user');
+                if (passIn) passIn.value = c.getAttribute('data-pass');
+            });
         });
     })();
 </script>
